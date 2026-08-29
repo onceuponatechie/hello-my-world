@@ -2,6 +2,8 @@ import { Nav } from "@/components/enigma/Nav";
 import { Hero } from "@/components/enigma/Hero";
 import { BentoGrid } from "@/components/enigma/BentoGrid";
 import { PromiseSection } from "@/components/enigma/PromiseSection";
+import { CasesSection } from "@/components/enigma/CasesSection";
+import { TouchBand, Footer } from "@/components/enigma/TouchBand";
 import Image from "next/image";
 import heroCover from "@/assets/hero-cover.png";
 
@@ -32,9 +34,9 @@ export default function Home() {
 
         <BentoGrid />
         <PromiseSection />
-        <Slot name="CasesSection" height="h-[70vh]" />
-        <Slot name="TouchBand" height="h-[40vh]" />
-        <Slot name="Footer" height="h-40" />
+        <CasesSection />
+        <TouchBand />
+        <Footer />
       </main>
     </div>
   );
