@@ -1,4 +1,5 @@
 import { Nav } from "@/components/enigma/Nav";
+import { Hero } from "@/components/enigma/Hero";
 import Image from "next/image";
 import heroCover from "@/assets/hero-cover.png";
 
@@ -23,7 +24,7 @@ export default function Home() {
 
           <div className="relative">
             <Nav />
-            <Slot name="Hero" height="h-[80vh]" />
+            <Hero />
           </div>
         </div>
 
