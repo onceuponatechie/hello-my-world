@@ -1,3 +1,4 @@
+import { Nav } from "@/components/enigma/Nav";
 import Image from "next/image";
 import heroCover from "@/assets/hero-cover.png";
 
@@ -21,7 +22,7 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-backdrop" />
 
           <div className="relative">
-            <Slot name="Nav" height="h-20" />
+            <Nav />
             <Slot name="Hero" height="h-[80vh]" />
           </div>
         </div>
