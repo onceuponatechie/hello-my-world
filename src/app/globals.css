@@ -28,7 +28,11 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-:is(a, summary):focus-visible {
+button {
+  cursor: pointer;
+}
+
+:is(a, button, summary):focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 4px;
 }
