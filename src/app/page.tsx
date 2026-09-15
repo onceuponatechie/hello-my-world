@@ -1,5 +1,6 @@
 import { Hero } from "@/components/hero";
 import { SiteNav } from "@/components/site-nav";
+import { Resources } from "@/components/resources";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <SiteNav />
       <main id="main-content" tabIndex={-1}>
         <Hero />
+        <Resources />
       </main>
     </div>
   );

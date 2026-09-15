@@ -5,6 +5,10 @@
   --color-ink: #111111;
   --color-sage: #a8cf8e;
   --color-card: #ffffff;
+  --color-butter: #fcffe1;
+  --color-muted-ink: #8a8a8a;
+  --color-sage-soft: #e3f0da;
+  --color-stone: #f1f1f0;
 }
 
 @theme inline {
