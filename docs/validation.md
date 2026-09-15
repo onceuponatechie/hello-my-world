@@ -43,3 +43,18 @@ git push -u origin main
 ```
 
 That terminal can use your ordinary GitHub sign-in. `-u` remembers the remote branch, allowing future pushes to use just `git push`. Successful publication still needs to be verified after this step.
+
+## Milestone 1 — navigation and static hero
+
+Checked on 15 September 2026:
+
+- The original Hanken Grotesk and Instrument Serif font files are included with their licenses. The browser reported the loaded Hanken Grotesk font family.
+- Both original hero photos loaded successfully through Next.js Image.
+- Desktop at 1280 × 800: heading computed at 68px; navigation and hero displayed without horizontal overflow.
+- Mobile at 390 × 844 and 320 × 740: no horizontal overflow. The heading computed at 32px on the 390px viewport. At 320px, the action links wrapped to separate rows.
+- Desktop Resources opened by click and closed with Enter. Mobile navigation and its nested Resources disclosure opened and closed.
+- Keyboard Tab revealed the skip link with a visible outline; Enter moved focus to the main element.
+- The heading’s accessible name is the complete sentence at the final build. No browser warnings or errors were captured.
+- Final ESLint and production build passed; the build included TypeScript checking and used the documented Windows worker setting.
+- The static hero reproduces source layout values, but exact visual parity is unverified: the live Lovable address and original hero background are unavailable.
+- Mobile menu overlay positioning, automatic dismissal, and original animation behavior remain upcoming work. Links retain their reference destinations, which are not yet built.

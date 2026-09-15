@@ -4,10 +4,31 @@
   --color-backdrop: #fcfcfc;
   --color-ink: #111111;
   --color-sage: #a8cf8e;
+  --color-card: #ffffff;
+}
+
+@theme inline {
+  --font-sans: var(--font-hanken-grotesk), Arial, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
 }
 
 body {
   background: var(--color-backdrop);
   color: var(--color-ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+:is(a, summary):focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
 }

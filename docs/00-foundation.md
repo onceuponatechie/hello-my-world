@@ -1,5 +1,7 @@
 # Lesson 0: how a Next.js page becomes a website
 
+This lesson describes the foundation at commit `6ec99b9`. The current files have evolved. Use `git show 6ec99b9:src/app/page.tsx` (or the corresponding file path) to read that checkpoint without changing your working files. Continue with [Lesson 1](01-navigation-and-hero.md) for the current layout.
+
 ## Outcome
 
 Run the project and see Essy's headline in a browser. This milestone teaches the application structure. Matching the Lovable layout starts in the next milestone.

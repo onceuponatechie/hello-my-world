@@ -28,6 +28,8 @@ The homepage assembles navigation, hero, resource cards, about, promise, cases, 
 
 ## Small, reviewable milestones
 
+Progress: milestone 0 is complete locally. Milestone 1 now contains the original fonts, static hero geometry, and navigation with native disclosure controls. The hero background still needs its original media. Milestone 2 will refine mobile behavior, including closing menus after choosing an item and on Escape; the basic narrow-screen layout already exists. Animation and visual comparison with the live reference remain later steps.
+
 | Step | Deliverable | Main lesson | Suggested commit |
 | --- | --- | --- | --- |
 | 0 | Running Next.js foundation | Files, components, JSX, styles, Git | `chore: initialize Next.js learning foundation` |

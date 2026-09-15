@@ -2,14 +2,17 @@
 
 Essy Udeme's personal website, rebuilt in Next.js while learning frontend development.
 
-## Current milestone: 0 — a working foundation
+## Current milestone: 1 — navigation and a static hero
 
-This is a small starter page with the original headline and colors. The Lovable layout, fonts, images, other pages, and interactions are upcoming milestones. Visual parity has not been assessed yet.
+The original font families, hero content, two photos, buttons, and navigation layout are now in place. Native HTML controls open the resource dropdown and mobile navigation. The Lovable hero background, remaining sections/pages, and original animations are still pending. Visual parity has not been assessed against a live reference.
+
+Navigation destinations are preserved from the source. Four supporting pages are not built yet, and the project, resources, about, and contact sections do not yet exist. Those links become functional as their milestones are completed.
 
 - Reference: https://github.com/onceuponatechie/butter-canvas-dream
 - Destination: https://github.com/onceuponatechie/hello-my-world
 - Stack: Next.js App Router, React, TypeScript, Tailwind CSS, npm.
-- Start the lesson: [Foundation walkthrough](docs/00-foundation.md).
+- Current lesson: [Fonts, components, and the static hero](docs/01-navigation-and-hero.md).
+- Previous lesson: [Foundation walkthrough](docs/00-foundation.md).
 - Follow the build: [Milestones and reference audit](docs/roadmap.md).
 
 ## Run locally
