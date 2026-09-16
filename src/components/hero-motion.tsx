@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+const MotionImage = motion.create(Image);
 import reading from "@/assets/images/essy-reading.jpg";
 import portrait from "@/assets/images/essy-portrait.jpg";
 import notes from "@/assets/images/essy-notes.jpg";
@@ -19,7 +21,7 @@ function useReducedMotion() {
 
 const images = [reading, portrait, notes, waves];
 
-export function HeroMedia({ offset, delay }: { offset: number; delay: number }) {
+export function HeroMedia({ offset }: { offset: number }) {
   const [index, setIndex] = useState(offset);
   const reducedMotion = useReducedMotion();
   useEffect(() => {
@@ -31,8 +33,8 @@ export function HeroMedia({ offset, delay }: { offset: number; delay: number }) 
   }, [reducedMotion]);
 
   return (
-    <span aria-hidden="true" className="hero-chip relative mx-[6px] inline-block h-[41px] w-[68px] overflow-hidden rounded-2xl border border-white/20 bg-ink align-middle shadow-[0_20px_40px_-18px_rgba(0,0,0,0.45)] md:h-11 md:w-[72px]" style={{ animationDelay: `${2.4 + delay}s` }}>
-      {images.map((image, imageIndex) => <Image key={image.src} src={image} alt="" fill sizes="(min-width: 768px) 72px, 68px" className="object-cover transition-opacity duration-[800ms] motion-reduce:transition-none" style={{ opacity: imageIndex === (reducedMotion ? offset : index) ? 1 : 0 }} />)}
+    <span aria-hidden="true" className="hero-chip relative mx-[6px] inline-block h-[41px] w-[68px] overflow-hidden rounded-2xl border border-white/20 bg-ink align-middle shadow-[0_20px_40px_-18px_rgba(0,0,0,0.45)] md:h-11 md:w-[72px]">
+      {images.map((image, imageIndex) => <MotionImage initial={false} key={image.src} src={image} alt="" fill sizes="(min-width: 768px) 72px, 68px" className="object-cover" animate={{ opacity: imageIndex === (reducedMotion ? offset : index) ? 1 : 0 }} transition={{ duration: reducedMotion ? 0 : 0.8 }} />)}
     </span>
   );
 }
@@ -61,27 +63,6 @@ export function SmileyReel() {
           <div className="h-7 w-7" />
         </div>
       </div>
-    </div>
-  );
-}
-
-export function Intro() {
-  const [progress, setProgress] = useState(0);
-  const reducedMotion = useReducedMotion();
-  useEffect(() => {
-    if (reducedMotion) return;
-    const start = performance.now();
-    const timer = window.setInterval(() => {
-      const next = Math.min(100, Math.floor((performance.now() - start) / 40) * 2);
-      setProgress(next);
-      if (next === 100) window.clearInterval(timer);
-    }, 40);
-    return () => window.clearInterval(timer);
-  }, [reducedMotion]);
-
-  return (
-    <div aria-hidden="true" className="intro-screen pointer-events-none fixed inset-0 z-[100] flex items-center justify-center">
-      <div className="flex flex-col items-center"><div className="intro-orb relative flex aspect-square w-[min(440px,82vw)] items-center justify-center rounded-full"><div className="intro-orb-shine absolute rounded-full" /><div className="relative flex text-[52px] font-medium tracking-tight text-neutral-500">{"Essy".split("").map((letter, index) => <span key={index} className="intro-letter" style={{ animationDelay: `${0.15 + index * 0.08}s` }}>{letter}</span>)}</div></div><div className="mt-6 text-[15px] tabular-nums text-neutral-500">{progress}%</div></div>
     </div>
   );
 }

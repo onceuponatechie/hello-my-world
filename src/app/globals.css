@@ -43,28 +43,14 @@ input:disabled {
   cursor: not-allowed;
 }
 
-.intro-screen {
-  background: radial-gradient(circle at 50% 45%, #fafafa 0%, #ececee 70%, #e4e4e4 100%);
-  animation: intro-exit 600ms 2400ms ease-in-out forwards;
-}
-.intro-orb {
-  background: radial-gradient(circle at 35% 25%, #fff 0%, #f2f2f4 45%, #e7e7ea 70%, #dcdce0 100%);
-  box-shadow: 0 40px 80px #0000001a, inset 0 -30px 60px #ffffffe6;
-}
-.intro-orb-shine { width: 59%; height: 27%; left: 7%; bottom: 9%; background: radial-gradient(ellipse, #ffffffd9, transparent 70%); filter: blur(10px); }
-.intro-letter { animation: hero-fade 350ms both; }
-.hero-fade { animation: hero-fade 700ms cubic-bezier(0.22,1,0.36,1) backwards; }
-.hero-word { animation: hero-word 550ms cubic-bezier(0.22,1,0.36,1) backwards; }
-.hero-chip { animation: hero-chip 450ms cubic-bezier(0.22,1,0.36,1) backwards; }
+html { scroll-behavior: smooth; }
+body { overflow-x: clip; }
 .hero-hand { transform-origin: 50% 100%; animation: hero-wave 700ms ease-in-out infinite; }
-@keyframes intro-exit { to { opacity: 0; transform: scale(1.05); visibility: hidden; } }
-@keyframes hero-fade { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes hero-word { from { opacity: 0; filter: blur(6px); } to { opacity: 1; filter: blur(0); } }
-@keyframes hero-chip { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes hero-wave { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(18deg); } }
 @media (prefers-reduced-motion: reduce) {
-  .intro-screen { display: none; }
-  .hero-fade, .hero-word, .hero-chip, .hero-hand, .intro-letter { animation: none; }
+  html { scroll-behavior: auto; }
+  .hero-hand { animation: none; }
+  .scroll-words span { opacity: 1 !important; }
 }
 
 :is(a, button, summary):focus-visible {
@@ -72,32 +58,16 @@ input:disabled {
   outline-offset: 4px;
 }
 
-/* Tablet stack; phones and reduced-motion layouts remain in normal flow. */
-@media (min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+/* The same stack on every screen; tall cards finish scrolling before pinning. */
+@media (prefers-reduced-motion: no-preference) {
   .project-stack-card {
     position: sticky;
-    top: 4rem;
-  }
-
-  .project-stack-card > article {
-    height: calc(100svh - 8rem);
-    transform: translateY(var(--project-shift, 0px)) scale(var(--project-scale, 1));
-    transform-origin: top center;
+    top: min(calc(1rem + var(--card-index, 0) * 8px), calc(100svh - var(--card-height, 640px) - 1rem));
   }
 }
-
-/* Double the compact desktop card (360px), including its full-height artwork. */
+@media (min-width: 768px) and (min-height: 700px) {
+  .project-stack-card article { height: calc(100svh - 8rem); }
+}
 @media (min-width: 1024px) {
-  .project-stack-card > article { height: 720px; }
-}
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  .project-stack-card {
-    position: sticky;
-    /* On short screens, read the whole card before it pins and the next arrives. */
-    top: min(4rem, calc(100svh - 720px - 2rem));
-  }
-  .project-stack-card > article {
-    transform: translateY(var(--project-shift, 0px)) scale(var(--project-scale, 1));
-    transform-origin: top center;
-  }
+  .project-stack-card article { height: 540px; }
 }

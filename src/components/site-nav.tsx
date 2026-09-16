@@ -108,7 +108,7 @@ export function SiteNav() {
               </div>
             </div>
           </div>
-          <Link href="/#projects" className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink">Projects</Link>
+          <Link href="/projects" className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink">Projects</Link>
           <Link href="/#about" className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink">About</Link>
         </nav>
         <div className="flex items-center gap-2">
@@ -129,7 +129,7 @@ export function SiteNav() {
           </button>
           <div id="mobile-resources" hidden={!mobileResourcesOpen} className="grid pl-4"><ResourceLinks onSelect={closeMenus} /></div>
         </div>
-        <Link href="/#projects" onClick={closeMenus} className="rounded-2xl px-4 py-2.5 text-[13px] font-medium hover:bg-black/5">Projects</Link>
+        <Link href="/projects" onClick={closeMenus} className="rounded-2xl px-4 py-2.5 text-[13px] font-medium hover:bg-black/5">Projects</Link>
         <Link href="/#about" onClick={closeMenus} className="rounded-2xl px-4 py-2.5 text-[13px] font-medium hover:bg-black/5">About</Link>
       </nav>
     </header>

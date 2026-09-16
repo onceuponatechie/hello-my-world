@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@/components/icon";
+import { motion, useReducedMotion } from "framer-motion";
 import books from "@/assets/images/essy-books.jpg";
 import slide from "@/assets/images/essy-slide.jpg";
 import notes from "@/assets/images/essy-notes.jpg";
@@ -18,42 +18,25 @@ const adventures = [
 
 export function Adventures() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const reduced = useReducedMotion();
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [dragging, setDragging] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const visible = useRef(false);
   const swipe = useRef<{ x: number; y: number; pointerId: number } | null>(null);
 
   function changeSlide(direction: number) {
     setIndex((current) => (current + direction + adventures.length) % adventures.length);
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { visible.current = entry.isIntersecting; }, { threshold: 0.25 });
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (paused || hovered || focused || dragging) return;
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const timer = window.setInterval(() => {
-      if (visible.current && !document.hidden && !motion.matches) {
-        setIndex((current) => (current + 1) % adventures.length);
-      }
-    }, 6000);
-    return () => window.clearInterval(timer);
-  }, [paused, hovered, focused, dragging]);
 
   return (
     <section ref={sectionRef} id="adventures" aria-labelledby="adventures-heading" aria-roledescription="carousel" className="relative scroll-mt-6 px-4 py-16 sm:px-8 sm:py-24">
-      <div className="mx-auto max-w-5xl text-center">
+      <div data-reveal="" className="mx-auto max-w-5xl text-center">
         <h2 id="adventures-heading" className="text-[clamp(28px,3.6vw,44px)] font-medium tracking-tight">Pick an <span className="font-serif italic">adventure</span></h2>
         <p className="mx-auto mt-2 max-w-md text-[12px] text-muted-ink">Each one leads somewhere small and useful.</p>
       </div>
-      <div className="mx-auto mt-12 max-w-6xl" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }} onKeyDown={(event) => {
+      <div data-reveal="" data-delay="120" className="mx-auto mt-12 max-w-6xl" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }} onKeyDown={(event) => {
         if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
           event.preventDefault();
           changeSlide(event.key === "ArrowRight" ? 1 : -1);
@@ -74,7 +57,7 @@ export function Adventures() {
           const dy = event.clientY - start.y;
           if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy)) changeSlide(dx < 0 ? 1 : -1);
         }} onPointerCancel={() => { swipe.current = null; setDragging(false); }}>
-          <div className="grid grid-flow-col auto-cols-[100%] items-start transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `translateX(-${index * 100}%)` }}>
+          <motion.div className="grid grid-flow-col auto-cols-[100%] items-start" animate={{ x: `-${index * 100}%` }} transition={{ duration: reduced ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}>
             {adventures.map((adventure, slideIndex) => (
               <div key={adventure.title} inert={slideIndex !== index} aria-hidden={slideIndex !== index} role="group" aria-roledescription="slide" aria-label={`${slideIndex + 1} of ${adventures.length}: ${adventure.title}`} className="min-w-0 px-3 py-3 md:px-4">
                 <article className="grid items-center gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] md:gap-14">
@@ -95,15 +78,12 @@ export function Adventures() {
                 </article>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-1">
-          <button type="button" aria-label="Previous adventure" onClick={() => changeSlide(-1)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-black/5"><Icon name="arrow-right" className="h-4 w-4 rotate-180" /></button>
           {adventures.map((adventure, slideIndex) => <button key={adventure.title} type="button" onClick={() => setIndex(slideIndex)} aria-label={`Show ${adventure.title}`} aria-current={slideIndex === index ? "true" : undefined} className="grid h-11 min-w-8 place-items-center rounded-full"><span className={`h-1.5 rounded-full transition-[width,background-color] motion-reduce:transition-none ${slideIndex === index ? "w-7 bg-ink" : "w-1.5 bg-ink/20"}`} /></button>)}
-          <button type="button" aria-label="Next adventure" onClick={() => changeSlide(1)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-black/5"><Icon name="arrow-right" className="h-4 w-4" /></button>
-          <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? "Resume automatic slides" : "Pause automatic slides"} className="min-h-11 rounded-full px-3 text-[12px] text-ink/70 hover:bg-black/5">{paused ? "Play" : "Pause"}</button>
         </div>
-        <p className="sr-only" aria-live={paused || focused || hovered || dragging ? "polite" : "off"} aria-atomic="true">{index + 1} of {adventures.length}: {adventures[index].title}</p>
+        <p className="sr-only" aria-live={focused || hovered || dragging ? "polite" : "off"} aria-atomic="true">{index + 1} of {adventures.length}: {adventures[index].title}</p>
       </div>
     </section>
   );
