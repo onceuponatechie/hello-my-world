@@ -69,10 +69,10 @@ export function Projects() {
                 <div className="grid h-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
                   <div className="relative order-1 aspect-[16/10] overflow-hidden rounded-[20px] md:order-2 md:aspect-auto md:min-h-[320px] md:rounded-[30px]">
                     <Image src={project.image} alt={project.name} fill sizes="(min-width: 1280px) 546px, (min-width: 768px) 48vw, 100vw" className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none" />
-                    <div className={`absolute left-4 top-4 flex max-w-[80%] items-end gap-3 rounded-2xl px-3 py-2 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] md:left-6 md:top-6 md:max-w-[60%] ${dark ? "-rotate-3 bg-ink text-white" : "rotate-2 bg-card text-ink"}`}>
+                    <div data-reveal="badge" data-delay="250" className={`absolute left-4 top-4 flex max-w-[80%] items-end gap-3 rounded-2xl px-3 py-2 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] md:left-6 md:top-6 md:max-w-[60%] lg:gap-4 lg:px-5 lg:py-4 ${dark ? "-rotate-3 bg-ink text-white" : "rotate-2 bg-card text-ink"}`}>
                       <div className="min-w-0">
-                        <div className="text-[20px] font-semibold leading-none tracking-tight md:text-[24px]">{project.stat}</div>
-                        <div className="mt-1 max-w-[14ch] text-[10px] leading-snug opacity-60 md:text-[11px]">{project.statLabel}</div>
+                        <div className="text-[20px] font-semibold leading-none tracking-tight md:text-[24px] lg:text-[36px]">{project.stat}</div>
+                        <div className="mt-1 max-w-[14ch] text-[10px] leading-snug opacity-60 md:text-[11px] lg:text-[13px]">{project.statLabel}</div>
                       </div>
                       <div aria-hidden="true" className="flex shrink-0 items-end gap-1 pb-1 opacity-50">
                         {[5, 9, 13, 17].map((height) => <span key={height} className="w-1 rounded-full bg-current" style={{ height }} />)}
@@ -84,18 +84,18 @@ export function Projects() {
                     </div>
                   </div>
 
-                  <div className="order-2 flex flex-col justify-center gap-4 p-3 pb-0 pt-1 md:order-1 md:gap-5 md:p-7">
+                  <div className="order-2 flex flex-col justify-center gap-4 p-3 pb-0 pt-1 md:order-1 md:gap-5 md:p-7 lg:gap-7 lg:p-9">
                     <span className="inline-flex w-fit items-center gap-2 rounded-full border border-ink/15 px-3 py-1 text-[12px] text-ink/70">
                       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-sage" /> Case study
                     </span>
-                    <h3 id={titleId} className="text-[clamp(1.7rem,3vw,2.6rem)] font-medium leading-[1.1] tracking-tight">{project.name}</h3>
+                    <h3 id={titleId} className="text-[clamp(1.7rem,3vw,2.6rem)] font-medium leading-[1.1] tracking-tight lg:text-[clamp(3rem,4.5vw,4rem)]">{project.name}</h3>
                     <div className="flex flex-wrap items-center gap-2 text-[12px] uppercase tracking-[0.18em] text-ink/45">
                       {project.year}<span aria-hidden="true" className="h-1 w-1 rounded-full bg-ink/30" />{project.role}
                     </div>
-                    <p className="max-w-[44ch] text-[14px] leading-[1.6] text-ink/65 md:text-[15px]">{project.body}</p>
+                    <p className="max-w-[44ch] text-[14px] leading-[1.6] text-ink/65 md:text-[15px] lg:text-[19px]">{project.body}</p>
                     <div className="mt-1 flex flex-wrap items-center gap-4">
-                      <button type="button" disabled title="Case study coming soon" className="inline-flex cursor-not-allowed items-center rounded-full bg-ink px-6 py-2.5 text-[12px] font-medium text-white">View Case Study</button>
-                      <button type="button" disabled title="Live site link coming soon" className="inline-flex cursor-not-allowed items-center gap-1 text-[12px] font-medium text-ink">Go live <Icon name="arrow-up-right" className="h-[13px] w-[13px]" /></button>
+                      <button type="button" disabled title="Case study coming soon" className="inline-flex cursor-not-allowed items-center rounded-full bg-ink px-6 py-2.5 text-[12px] font-medium text-white lg:px-7 lg:py-4 lg:text-[14px]">View Case Study</button>
+                      <button type="button" disabled title="Live site link coming soon" className="inline-flex cursor-not-allowed items-center gap-1 text-[12px] font-medium text-ink lg:text-[14px]">Go live <Icon name="arrow-up-right" className="h-[13px] w-[13px]" /></button>
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export function Projects() {
         })}
       </ProjectStack>
 
-      <div className="mx-auto mt-10 flex max-w-6xl justify-center">
+      <div data-reveal="" className="mx-auto mt-10 flex max-w-6xl justify-center">
         <a href="#projects" className="inline-flex items-center rounded-full border border-ink/15 px-5 py-2.5 text-[13px] font-medium transition-colors hover:bg-ink hover:text-white">Back to projects</a>
       </div>
     </section>

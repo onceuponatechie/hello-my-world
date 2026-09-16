@@ -7,14 +7,14 @@ export function ProjectStack({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const cards = Array.from(stackRef.current?.querySelectorAll<HTMLElement>(".project-stack-card") ?? []);
-    const motion = window.matchMedia("(min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)");
+    const motion = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference), (min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)");
     let frame = 0;
 
     function updateCards() {
       frame = 0;
       // Read positions before writing styles to avoid repeated layout work.
       const positions = cards.map((card) => card.getBoundingClientRect().top);
-      const pinnedTop = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4;
+      const pinnedTop = parseFloat(getComputedStyle(cards[0]).top) || 0;
       cards.forEach((card, index) => {
         const nextTop = positions[index + 1];
         const progress = motion.matches && nextTop !== undefined

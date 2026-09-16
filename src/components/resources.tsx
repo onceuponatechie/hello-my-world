@@ -42,11 +42,11 @@ function TemplateFan() {
     <div aria-hidden="true" className="flex w-[55%] max-w-[200px] shrink-0 items-center min-[420px]:w-[40%] md:w-[55%] lg:w-[40%]">
       <div className="relative aspect-[196/145] w-full">
         {photos.map(({ image, left, top, rotate }, index) => (
-          <div key={image.src} style={{ left, top, transform: `rotate(${rotate}deg)`, zIndex: 3 - index }} className="absolute h-[94%] w-[47%] overflow-hidden rounded-[14px] shadow-[0_16px_34px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/[0.06]">
+          <div key={image.src} data-reveal="fan" data-index={index} data-delay={350 + index * 120} style={{ left, top, transform: `rotate(${rotate}deg)`, zIndex: 3 - index }} className="absolute h-[94%] w-[47%] overflow-hidden rounded-[14px] shadow-[0_16px_34px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/[0.06]">
             <Image src={image} alt="" fill sizes="(min-width: 768px) 80px, 100px" className="object-cover" />
           </div>
         ))}
-        <span className="absolute bottom-[8%] left-[36%] z-10 grid aspect-square w-[24%] place-items-center rounded-full bg-card shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06]">
+        <span data-reveal="badge" data-delay="800" className="absolute bottom-[8%] left-[36%] z-10 grid aspect-square w-[24%] place-items-center rounded-full bg-card shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06]">
           <span className="grid aspect-square w-[58%] place-items-center rounded-full bg-sage-soft text-ink">
             <Icon name="layers" className="h-3 w-3" />
           </span>
@@ -61,7 +61,7 @@ export function Resources() {
     <section id="resources" aria-labelledby="resources-heading" className="scroll-mt-6 px-4 pb-14 sm:px-8 sm:pb-20">
       <h2 id="resources-heading" className="sr-only">Explore stories and resources</h2>
       <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(290px,auto)_minmax(290px,auto)]">
-        <Link href="/blog" prefetch={false} aria-labelledby="publication-title" className={`${cardBase} bg-ink p-7 text-white lg:col-span-4 lg:row-span-2`}>
+        <Link data-reveal="" data-delay="50" href="/blog" prefetch={false} aria-labelledby="publication-title" className={`${cardBase} bg-ink p-7 text-white lg:col-span-4 lg:row-span-2`}>
           <CornerArrow tone="dark" />
           <Kicker className="pr-10 text-white/40">The Publication</Kicker>
           <h3 id="publication-title" className="mt-3 text-[26px] font-medium leading-tight tracking-[-0.8px]">Why Not Build?</h3>
@@ -73,7 +73,7 @@ export function Resources() {
           </div>
         </Link>
 
-        <Link href="/tools-and-templates" prefetch={false} aria-labelledby="templates-title" className={`${cardBase} bg-stone p-7 ring-1 ring-black/5 lg:col-span-5`}>
+        <Link data-reveal="" data-delay="140" href="/tools-and-templates" prefetch={false} aria-labelledby="templates-title" className={`${cardBase} bg-stone p-7 ring-1 ring-black/5 lg:col-span-5`}>
           <div className="flex flex-1 flex-col items-center gap-4 min-[420px]:flex-row md:flex-col lg:flex-row">
             <div className="flex min-w-0 flex-1 flex-col justify-between self-stretch">
               <div>
@@ -89,7 +89,7 @@ export function Resources() {
           </div>
         </Link>
 
-        <Link href="/product-lab" prefetch={false} aria-labelledby="lab-title" className={`${cardBase} min-h-[300px] bg-stone p-7 ring-1 ring-black/5 lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:min-h-0`}>
+        <Link data-reveal="" data-delay="230" href="/product-lab" prefetch={false} aria-labelledby="lab-title" className={`${cardBase} min-h-[300px] bg-stone p-7 ring-1 ring-black/5 lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:min-h-0`}>
           <div className="relative z-10 min-[420px]:max-w-[62%] md:max-w-full lg:max-w-[62%]">
             <Kicker className="text-ink/45">Teardowns & case studies</Kicker>
             <h3 id="lab-title" className="mt-3 text-[26px] font-medium leading-tight tracking-[-0.8px]">The Product Lab</h3>
@@ -102,7 +102,7 @@ export function Resources() {
           <Image src={productLab} alt="" sizes="(min-width: 1280px) 190px, (min-width: 768px) 16vw, 39vw" className="pointer-events-none absolute -bottom-6 -right-4 h-auto w-[39%] max-w-[210px] select-none drop-shadow-[0_24px_44px_rgba(17,17,17,0.18)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:rotate-2 motion-reduce:transform-none motion-reduce:transition-none" />
         </Link>
 
-        <Link href="/courses" prefetch={false} aria-labelledby="courses-title" className={`${cardBase} justify-between bg-sage-soft p-7 lg:col-span-3 lg:col-start-5 lg:row-start-2`}>
+        <Link data-reveal="" data-delay="320" href="/courses" prefetch={false} aria-labelledby="courses-title" className={`${cardBase} justify-between bg-sage-soft p-7 lg:col-span-3 lg:col-start-5 lg:row-start-2`}>
           <div>
             <Kicker className="text-ink/45">Courses & certifications</Kicker>
             <h3 id="courses-title" className="mt-3 font-serif text-[34px] italic leading-none tracking-tight">the classroom</h3>
@@ -113,7 +113,7 @@ export function Resources() {
           <span className={pillClass}>Enter the classroom</span>
         </Link>
 
-        <a href="#about" aria-labelledby="meet-essy-title" className={`${cardBase} min-h-64 ring-1 ring-black/5 lg:col-span-3 lg:col-start-10 lg:row-start-1`}>
+        <a data-reveal="" data-delay="410" href="#about" aria-labelledby="meet-essy-title" className={`${cardBase} min-h-64 ring-1 ring-black/5 lg:col-span-3 lg:col-start-10 lg:row-start-1`}>
           <CornerArrow tone="glass" />
           <Image src={reading} alt="Essy reading a book on a sunlit sofa" fill sizes="(min-width: 1280px) 276px, (min-width: 768px) 25vw, 100vw" className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none" />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-6 pb-5 pt-14">
