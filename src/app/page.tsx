@@ -3,6 +3,9 @@ import { SiteNav } from "@/components/site-nav";
 import { Resources } from "@/components/resources";
 import { About } from "@/components/about";
 import { Projects } from "@/components/projects";
+import { Adventures } from "@/components/adventures";
+import { Newsletter } from "@/components/newsletter";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function HomePage() {
   return (
@@ -16,7 +19,10 @@ export default function HomePage() {
         <Resources />
         <About />
         <Projects />
+        <Adventures />
+        <Newsletter />
       </main>
+      <SiteFooter />
     </div>
   );
 }

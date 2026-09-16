@@ -38,6 +38,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+}
+
 :is(a, button, summary):focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 4px;
