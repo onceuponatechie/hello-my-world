@@ -9,6 +9,8 @@
   --color-muted-ink: #8a8a8a;
   --color-sage-soft: #e3f0da;
   --color-stone: #f1f1f0;
+  --color-butter-soft: #f7f2cf;
+  --color-lavender-soft: #efe7f5;
 }
 
 @theme inline {
@@ -39,4 +41,18 @@ button {
 :is(a, button, summary):focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 4px;
+}
+
+/* Keep every card readable on phones, short windows, and with reduced motion. */
+@media (min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .project-stack-card {
+    position: sticky;
+    top: 4rem;
+  }
+
+  .project-stack-card > article {
+    height: calc(100svh - 8rem);
+    transform: translateY(var(--project-shift, 0px)) scale(var(--project-scale, 1));
+    transform-origin: top center;
+  }
 }

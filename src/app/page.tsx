@@ -2,6 +2,7 @@ import { Hero } from "@/components/hero";
 import { SiteNav } from "@/components/site-nav";
 import { Resources } from "@/components/resources";
 import { About } from "@/components/about";
+import { Projects } from "@/components/projects";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Hero />
         <Resources />
         <About />
+        <Projects />
       </main>
     </div>
   );
